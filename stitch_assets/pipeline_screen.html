@@ -1,0 +1,921 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Mirage Pharma — Clinical Precision &amp; Data-Dense Research Architecture</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#005f9d",
+            "primary-container": "#2878bc",
+            "primary-fixed": "#d1e4ff",
+            "primary-fixed-dim": "#9dcaff",
+            "clinical-teal": "#227f8b",
+            "clinical-teal-light": "#e0f6f9",
+            "vitality": "#006e13",
+            "vitality-container": "#84f97b",
+            "vitality-light": "#e8fbe8",
+            "secondary": "#006e13",
+            "surface": "#f7f9fb",
+            "surface-bright": "#fbfcfd",
+            "surface-container-low": "#f2f4f6",
+            "surface-container": "#eceef0",
+            "surface-container-high": "#e5e8ea",
+            "surface-container-highest": "#dee1e4",
+            "on-surface": "#191c1e",
+            "on-surface-variant": "#414750",
+            "outline": "#717882",
+            "outline-variant": "#c0c7d2",
+            "navy-cockpit": "#031d38",
+            "navy-card": "#06294e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "sans": ["Inter", "sans-serif"],
+            "headline": ["Plus Jakarta Sans", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"],
+            "label": ["Space Grotesk", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-1 {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .hud-glass {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 35px -5px rgba(0, 95, 157, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+    .hud-dark-glass {
+      background: rgba(3, 29, 56, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 16px 40px -8px rgba(0, 20, 40, 0.35);
+    }
+    .telemetry-grid {
+      background-size: 28px 28px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 95, 157, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 95, 157, 0.04) 1px, transparent 1px);
+    }
+    .pulse-dot {
+      animation: pulseGlow 2.5s infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.15); }
+    }
+</style>
+</head>
+<body class="bg-[#f7f9fb] text-on-surface antialiased font-sans min-h-screen flex flex-col selection:bg-primary-fixed selection:text-primary">
+<!-- ========================================================================= -->
+<!-- 1. TOP NAVIGATION: CLINICAL PRECISION & PARTNER PORTAL                    -->
+<!-- ========================================================================= -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-outline-variant/60 shadow-sm transition-all">
+<!-- Live Clinical Telemetry Top Strip -->
+<div class="text-white text-xs px-6 lg:px-8 py-1.5 flex items-center justify-between font-mono border-b border-white/10" style="background-color: #35AB38;">
+<div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+<div class="flex items-center gap-6 overflow-x-auto no-scrollbar py-0.5">
+<span class="flex items-center gap-1.5 text-vitality-container">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed pulse-dot inline-block"></span>
+          SYS.STATUS: FULL OPERATIONAL GxP
+        </span>
+<span class="hidden md:inline text-white/40">|</span>
+<span class="hidden md:inline text-white/80">PIPELINE: 42 CANDIDATES ACTIVE</span>
+<span class="hidden lg:inline text-white/40">|</span>
+<span class="hidden lg:inline text-white/80">AUDIT: FDA 21 CFR PT 11 COMPLIANT</span>
+<span class="hidden sm:inline text-white/40">|</span>
+<span class="hidden sm:inline text-clinical-teal-light font-medium">LATEST DOSSIER: ONCO-MRG-709 PUBLISHED</span>
+</div>
+<div class="flex items-center gap-4 text-[11px] shrink-0">
+<a class="hover:text-primary-fixed-dim transition-colors flex items-center gap-1" href="#investor">
+<span class="material-symbols-outlined text-[14px]">query_stats</span>
+          Investor &amp; Governance
+        </a>
+<span class="text-white/30">/</span>
+<a class="hover:text-vitality-container transition-colors flex items-center gap-1 text-white" href="#portal">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+          Investigator Portal
+        </a>
+</div>
+</div>
+</div>
+<!-- Primary Nav Bar -->
+<div class="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex items-center justify-between h-20 gap-3 lg:gap-6">
+<!-- Corporate Identity Anchor -->
+<a class="flex items-center gap-3 shrink-0 focus:outline-none" href="#hero">
+<img alt="Mirage Pharma Logo" class="h-9 sm:h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WJZJUdIis2WOUvfhmLoX2MMXrswKA2za4bAvemQ3FproLNe4q7S1enXyEN07KHfsxohry9_AILGISNYnTBqvKHHxM3zszcExZcLps6ttBqSGKmHkG_zPDNgwm1V8wV7mYd6PhrljmPuvbGTg64qp1GT-hVQCwC2kthF2eg6L6OwzERgNGNj9lV_VS2hhpAhCtbJCb8WpAXPGMgdCdXEEuZGl0R79zL_hD3fCz5DDv679eG99cfAqJvjYqD">
+</a>
+<!-- Global Medical Search Bar (Scientific Indexer) -->
+<div class="hidden xl:flex items-center flex-1 max-w-xs 2xl:max-w-md mx-4">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[19px]">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant/80 rounded-full pl-9 pr-14 py-2 text-xs focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-outline transition-all" placeholder="Search trials, targets (HER2, MRG-701)..." type="text">
+<span class="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono bg-white px-1.5 py-0.5 rounded border border-outline-variant text-outline">⌘K</span>
+</div>
+</div>
+<!-- Navigation Links with whitespace-nowrap and flexible spacing -->
+<nav class="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-6 shrink-0">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-xs lg:text-sm font-label font-medium whitespace-nowrap" href="#cockpit">Cockpit</a>
+<a class="text-primary font-semibold border-b-2 border-primary pb-0.5 text-xs lg:text-sm font-label whitespace-nowrap" href="#pipeline">Clinical Matrix</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-xs lg:text-sm font-label font-medium whitespace-nowrap" href="#benchmarks">Benchmarks</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-xs lg:text-sm font-label font-medium whitespace-nowrap" href="#telemetry">Global Footprint</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-xs lg:text-sm font-label font-medium whitespace-nowrap" href="#co-dev">Co-Development</a>
+</nav>
+<!-- Partner Access CTAs -->
+<div class="flex items-center gap-2 sm:gap-3 shrink-0">
+<button aria-label="Language selector" class="hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-mono text-on-surface-variant hover:bg-surface-container transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">translate</span>
+<span class="">EN/GL</span>
+</button>
+<a class="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-primary text-white text-xs font-label font-bold shadow-md hover:bg-primary-container transition-all active:scale-95 whitespace-nowrap shrink-0" href="#partner-hub">
+<span class="">Partner Access</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+</header>
+<main class="flex-grow telemetry-grid">
+<!-- ========================================================================= -->
+<!-- 2. HERO: SCIENTIFIC COCKPIT & LIVE PIPELINE TELEMETRY                     -->
+<!-- ========================================================================= -->
+<section class="relative pt-10 pb-20 lg:pt-14 lg:pb-28 overflow-hidden" id="cockpit">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<!-- Top Cockpit Status Bar -->
+<div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-outline-variant/50">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-outline-variant text-xs font-mono">
+<span class="inline-block w-2 h-2 rounded-full bg-vitality"></span>
+<span class="font-bold text-on-surface">COCKPIT VIEW:</span> CLINICAL RESEARCH PIPELINE ACTIVE
+        </div>
+<div class="flex items-center gap-4 text-xs font-mono text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-primary">verified</span> GxP AUDITED 2025</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-clinical-teal">public</span> 38 SITES REPORTING</span>
+</div>
+</div>
+<!-- Split Screen Architecture -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+<!-- Left: Clinical Authority & Interactive Ticker -->
+<div class="lg:col-span-6 flex flex-col items-start gap-6">
+<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-clinical-teal/10 border border-clinical-teal/30 text-clinical-teal text-xs font-mono font-medium">
+<span class="material-symbols-outlined text-[15px]">biotech</span>
+            TARGETED BIOTHERAPEUTICS ARCHITECTURE
+          </div>
+<h1 class="font-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold text-on-surface tracking-tight leading-[1.08]">
+            Precision Science. <br>
+<span class="bg-gradient-to-r from-primary via-clinical-teal to-secondary bg-clip-text text-transparent">Measured in Lives Saved.</span>
+</h1>
+<p class="text-base sm:text-lg text-on-surface-variant leading-relaxed max-w-xl">
+            Mirage Pharma bridges high-density molecular telemetry with rapid translational biomanufacturing. Anticipating therapeutic thresholds across oncology, vascular restoration, and bioenergetics.
+          </p>
+<!-- Interactive Pipeline Filter Badges -->
+<div class="w-full bg-white/80 p-3.5 rounded-2xl border border-outline-variant/60 shadow-sm">
+<p class="text-[11px] font-mono uppercase text-outline mb-2 tracking-wider">Fast Pipeline Telemetry Filter:</p>
+<div class="flex flex-wrap gap-2">
+<a class="px-3 py-1 rounded-lg text-xs font-medium bg-primary text-white shadow-sm flex items-center gap-1" href="#pipeline">
+<span class="">All Cohorts (42)</span>
+</a>
+<a class="px-3 py-1 rounded-lg text-xs font-medium bg-surface-container hover:bg-surface-container-high text-on-surface-variant flex items-center gap-1" href="#pipeline">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Oncology [18]</span>
+</a>
+<a class="px-3 py-1 rounded-lg text-xs font-medium bg-surface-container hover:bg-surface-container-high text-on-surface-variant flex items-center gap-1" href="#pipeline">
+<span class="w-1.5 h-1.5 rounded-full bg-clinical-teal"></span>
+<span class="">Cardiovascular [11]</span>
+</a>
+<a class="px-3 py-1 rounded-lg text-xs font-medium bg-surface-container hover:bg-surface-container-high text-on-surface-variant flex items-center gap-1" href="#pipeline">
+<span class="w-1.5 h-1.5 rounded-full bg-vitality"></span>
+<span class="">Metabolic [13]</span>
+</a>
+</div>
+</div>
+<!-- Dual Scientific CTAs -->
+<div class="flex flex-wrap items-center gap-3 pt-2">
+<a class="px-6 py-3 rounded-xl bg-primary text-white font-label font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:bg-primary-container shadow-md transition-all active:scale-95" href="#pipeline">
+<span class="">Inspect Clinical Matrix</span>
+<span class="material-symbols-outlined text-[17px]">dataset</span>
+</a>
+<a class="px-6 py-3 rounded-xl hud-glass text-on-surface hover:text-primary font-label font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all" href="#co-dev">
+<span class="material-symbols-outlined text-[17px] text-clinical-teal">hub</span>
+<span class="">Trial Co-Development</span>
+</a>
+</div>
+<!-- Live Metrics Ticker Bar -->
+<div class="w-full grid grid-cols-3 gap-3 pt-4 border-t border-outline-variant/40">
+<div class="p-3 bg-white rounded-xl border border-outline-variant/50">
+<span class="text-[10px] font-mono text-outline block">PHASE III / REG</span>
+<span class="font-headline text-xl font-bold text-primary">14 Trials</span>
+<span class="text-[10px] text-vitality font-medium block">↑ 3 in FDA review</span>
+</div>
+<div class="p-3 bg-white rounded-xl border border-outline-variant/50">
+<span class="text-[10px] font-mono text-outline block">GxP REPEATABILITY</span>
+<span class="font-headline text-xl font-bold text-secondary">99.98%</span>
+<span class="text-[10px] text-on-surface-variant font-medium block">Zero deviation</span>
+</div>
+<div class="p-3 bg-white rounded-xl border border-outline-variant/50">
+<span class="text-[10px] font-mono text-outline block">PATIENT NETWORK</span>
+<span class="font-headline text-xl font-bold text-clinical-teal">1.4M+</span>
+<span class="text-[10px] text-on-surface-variant font-medium block">Global cohort</span>
+</div>
+</div>
+</div>
+<!-- Right: Glassmorphism Analytical Frame with Micro-HUD Overlays -->
+<div class="lg:col-span-6">
+<div class="relative rounded-3xl p-3 bg-gradient-to-br from-white via-white/80 to-surface-container border border-outline-variant/70 shadow-2xl">
+<!-- Top HUD Bar -->
+<div class="flex items-center justify-between px-4 py-2 bg-navy-cockpit text-white rounded-xl mb-3 text-xs font-mono">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">biotech</span>
+<span class="tracking-wide">CRYO-EM RECONSTRUCTION // MRG-709</span>
+</div>
+<div class="flex items-center gap-3 text-[11px] text-white/70">
+<span class="">RES: 1.84 Å</span>
+<span class="text-vitality-container">● STREAM ACTIVE</span>
+</div>
+</div>
+<!-- Main Render Area -->
+<div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-navy-cockpit shadow-inner group">
+<img alt="Luminous double-helix DNA with biomedical glass ribbons and sparkling cellular vitality" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-95" src="https://lh3.googleusercontent.com/aida/AEtjO1V1GGhciDGaiKcxp0sxvqZGpCNUviB_usYphi0_JOCXzsqkop_aDWwvhU6Nah34mecxPv5TsDBs1cfvTRL0OO0NXc5xi0_7c4u0sUQ7i8YFNEMDuipGERlrK9M9zKfgEAGudEV1WE2CAgNEsl5CFSWdenNLjM4fSvZptRE2XOhHlV9cpdE4leQmv2mlEe9kghhKNtXtilZY5yO_8MMo2BmFodIlCOD62OkF2QvGFSxm5KwqAogpTMUcKUc">
+<!-- Subtle HUD Reticle & Crosshair Grid Overlay -->
+<div class="absolute inset-0 pointer-events-none border border-white/20 rounded-2xl m-3 flex flex-col justify-between p-3">
+<div class="flex justify-between text-[10px] font-mono text-white/60">
+<span class="">LOC: CHROMO-17q12</span>
+<span class="">AFFINITY: Kd 0.42 nM</span>
+</div>
+<div class="flex justify-between items-end text-[10px] font-mono text-white/60">
+<span class="">MOL.WT: 146.2 kDa</span>
+<span class="">GxP LOT: #MRG-2025-08</span>
+</div>
+</div>
+<!-- Micro-HUD Overlay 1: Receptor Specificity (Top Right) -->
+<div class="absolute top-6 right-6 hud-dark-glass p-3 rounded-xl text-white font-mono text-xs border border-white/20 shadow-xl max-w-[190px]">
+<div class="flex items-center justify-between text-[10px] text-primary-fixed-dim mb-1">
+<span class="">TARGET RECEPTOR</span>
+<span class="text-secondary-fixed">98.4%</span>
+</div>
+<p class="font-sans font-bold text-white text-xs leading-tight">HER2 / Topoisomerase-I Linker</p>
+<div class="w-full bg-white/20 rounded-full h-1 mt-2">
+<div class="bg-secondary-fixed h-1 rounded-full" style="width: 94%"></div>
+</div>
+</div>
+<!-- Micro-HUD Overlay 2: Real-Time Trial Readout (Bottom Left) -->
+<div class="absolute bottom-6 left-6 hud-dark-glass p-3 rounded-xl text-white font-mono text-xs border border-white/20 shadow-xl max-w-[210px]">
+<div class="flex items-center gap-1.5 text-vitality-container text-[10px] mb-1">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed pulse-dot inline-block"></span>
+<span class="">PHASE III MULTI-SITE</span>
+</div>
+<p class="font-sans text-xs text-white/90 font-medium">Cohort Progression: n=1,420</p>
+<p class="text-[10px] text-white/60 mt-1">Primary Endpoint: Exceeded (+38%)</p>
+</div>
+</div>
+<!-- Bottom Telemetry Badges Strip -->
+<div class="grid grid-cols-3 gap-2 mt-3 text-center">
+<div class="p-2 rounded-lg bg-surface-container-low border border-outline-variant/60">
+<span class="text-[10px] font-mono text-outline block">STABILITY PROFILE</span>
+<span class="text-xs font-headline font-bold text-primary">36 Mo. @ 2-8°C</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low border border-outline-variant/60">
+<span class="text-[10px] font-mono text-outline block">TARGET CLEARANCE</span>
+<span class="text-xs font-headline font-bold text-clinical-teal">T1/2 = 14.2 Days</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low border border-outline-variant/60">
+<span class="text-[10px] font-mono text-outline block">PURITY (HPLC)</span>
+<span class="text-xs font-headline font-bold text-secondary">99.87%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 3. CORE VALUES: SCIENTIFIC BENCHMARK GRID & EVIDENCE PILLARS               -->
+<!-- ========================================================================= -->
+<section class="py-20 bg-surface-bright border-y border-outline-variant/50 relative" id="benchmarks">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-mono font-semibold uppercase mb-2">
+            METHODOLOGY &amp; ETHICAL FIDELITY
+          </div>
+<h2 class="text-3xl sm:text-4xl font-headline font-extrabold text-on-surface">
+            Engineered by Evidence, Bound by Purpose
+          </h2>
+</div>
+<p class="text-sm text-on-surface-variant max-w-md">
+          Three institutional benchmarks ensuring absolute reproducibility, patient safety, and bio-manufacturing transparency across every investigational batch.
+        </p>
+</div>
+<!-- 3-Column Interactive Scientific Benchmark Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+<!-- Pillar 1: Patient-Centric Clinical Empathy -->
+<div class="hud-glass rounded-2xl p-7 border border-white/90 relative flex flex-col justify-between hover:shadow-xl transition-all duration-300">
+<div>
+<div class="flex items-center justify-between mb-6">
+<div class="w-12 h-12 rounded-xl bg-vitality-light text-vitality flex items-center justify-center border border-vitality/20 shadow-sm">
+<span class="material-symbols-outlined text-[26px] fill-1">health_and_safety</span>
+</div>
+<span class="text-[11px] font-mono font-semibold px-2.5 py-1 rounded-md bg-secondary-fixed/30 text-on-secondary-container">BENCHMARK 01</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-2">Patient-First Bioethics</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-6">
+              Prioritizing safety margin indices and open compassionate access protocols. Every trial is calibrated to minimize toxicity while maximizing life-extension parameters across diverse populations.
+            </p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/50 space-y-2 font-mono text-xs">
+<div class="flex justify-between items-center">
+<span class="text-outline">Expanded Access Sites:</span>
+<span class="font-bold text-on-surface">142 Centers</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-outline">Patient Adherence:</span>
+<span class="font-bold text-vitality">96.8%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-outline">Bioethics Audits:</span>
+<span class="font-bold text-primary">100% Passed</span>
+</div>
+</div>
+</div>
+<!-- Pillar 2: Translational Rigor & Agility -->
+<div class="hud-glass rounded-2xl p-7 border border-white/90 relative flex flex-col justify-between hover:shadow-xl transition-all duration-300">
+<div>
+<div class="flex items-center justify-between mb-6">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed/40 text-primary flex items-center justify-center border border-primary/20 shadow-sm">
+
+</div>
+<span class="text-[11px] font-mono font-semibold px-2.5 py-1 rounded-md bg-primary-fixed text-primary font-bold">BENCHMARK 02</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-2">High-Density Precision</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-6">
+              Autonomous robotic screening, computational ligand simulation, and micro-fluidic synthesis compress phase transitions by 40% without compromising evidentiary thresholds.
+            </p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/50 space-y-2 font-mono text-xs">
+<div class="flex justify-between items-center">
+<span class="text-outline">Computational Pipeline:</span>
+<span class="font-bold text-on-surface">500k Ligands/Day</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-outline">Patents Filed (2024-25):</span>
+<span class="font-bold text-primary">28 Global</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-outline">Phase Compression:</span>
+<span class="font-bold text-clinical-teal">-14.2 Months</span>
+</div>
+</div>
+</div>
+<!-- Pillar 3: GxP & Regulatory Stewardship -->
+<div class="hud-glass rounded-2xl p-7 border border-white/90 relative flex flex-col justify-between hover:shadow-xl transition-all duration-300">
+<div>
+<div class="flex items-center justify-between mb-6">
+<div class="w-12 h-12 rounded-xl bg-clinical-teal-light text-clinical-teal flex items-center justify-center border border-clinical-teal/20 shadow-sm">
+<span class="material-symbols-outlined text-[26px] fill-1">verified_user</span>
+</div>
+<span class="text-[11px] font-mono font-semibold px-2.5 py-1 rounded-md bg-clinical-teal/20 text-clinical-teal">BENCHMARK 03</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-2">Strict GxP Integrity</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-6">
+              Fully serialized, cryptographic batch audit trails aligned with EMA, FDA, and WHO pharmacopeial benchmarks. 100% blind analytical validation across all multi-center trials.
+            </p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/50 space-y-2 font-mono text-xs">
+<div class="flex justify-between items-center">
+<span class="text-outline">ISO 9001:2015 Status:</span>
+<span class="font-bold text-vitality">Certified Gold</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-outline">21 CFR Pt 11 Compliance:</span>
+<span class="font-bold text-primary">100% Native</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-outline">Independent Audits:</span>
+<span class="font-bold text-clinical-teal">Zero Findings</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 4. THERAPEUTIC PIPELINE & SCIENTIFIC MATRIX TRACKER                       -->
+<!-- ========================================================================= -->
+<section class="py-20 bg-surface relative" id="pipeline">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<!-- Section Header with Real-Time Indicator -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-clinical-teal/10 text-clinical-teal text-xs font-mono font-semibold uppercase mb-2">
+            RESEARCH &amp; DEVELOPMENT DOSSIER
+          </div>
+<h2 class="text-3xl sm:text-4xl font-headline font-extrabold text-on-surface">
+            Clinical Trials Matrix &amp; Pipeline Tracker
+          </h2>
+<p class="text-sm text-on-surface-variant mt-2 max-w-xl">
+            Live progression across four core frontiers: Precision Oncology, Cardiology, Metabolic Regulation, and Preventative Cellular Longevity.
+          </p>
+</div>
+<div class="flex items-center gap-3 bg-white p-2 rounded-xl border border-outline-variant/60 shadow-sm font-mono text-xs">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface-variant">STAGE LEGEND:</span>
+<span class="flex items-center gap-1 text-primary"><span class="w-2 h-2 rounded-full bg-primary"></span> Phase I</span>
+<span class="flex items-center gap-1 text-clinical-teal"><span class="w-2 h-2 rounded-full bg-clinical-teal"></span> Phase II</span>
+<span class="flex items-center gap-1 text-vitality"><span class="w-2 h-2 rounded-full bg-vitality"></span> Phase III / Marketed</span>
+</div>
+</div>
+<!-- Matrix Table Card -->
+<div class="bg-white rounded-2xl border border-outline-variant/70 shadow-xl overflow-hidden">
+<!-- Table Control Strip -->
+<div class="bg-surface-container-low px-6 py-4 border-b border-outline-variant/60 flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-2 text-xs font-mono text-on-surface">
+<span class="material-symbols-outlined text-[17px] text-primary">filter_alt</span>
+<span class="font-bold">ACTIVE PIPELINE CANDIDATES (4 CORE PORTFOLIOS)</span>
+</div>
+<div class="flex items-center gap-3">
+<a class="text-xs font-mono text-primary hover:underline flex items-center gap-1" href="#portal">
+<span class="material-symbols-outlined text-[15px]">file_download</span>
+              Download Full Registry (PDF/XML)
+            </a>
+</div>
+</div>
+<!-- Matrix Content Rows -->
+<div class="divide-y divide-outline-variant/40">
+<!-- Row 1: Precision Oncology -->
+<div class="p-6 lg:p-7 hover:bg-surface-bright transition-colors">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+<!-- Identifiers -->
+<div class="lg:col-span-3">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-primary-fixed text-primary">MRG-701 / 709</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-vitality-container text-on-secondary-container font-semibold">Phase III (Pivotal)</span>
+</div>
+<h3 class="text-base font-headline font-bold text-on-surface">Precision Oncology</h3>
+<p class="text-xs text-outline mt-0.5">Target: HER2-Low &amp; Microenvironment Checkpoint</p>
+</div>
+<!-- Pathway & Mechanism -->
+<div class="lg:col-span-3 text-xs">
+<span class="text-outline font-mono block text-[11px]">PRIMARY MECHANISM</span>
+<p class="text-on-surface font-medium mt-0.5">Targeted antibody-drug conjugate with novel cleavable linker minimizing bystander cytotoxicity.</p>
+</div>
+<!-- Phase Progress Bar -->
+<div class="lg:col-span-4">
+<div class="flex justify-between text-[11px] font-mono text-outline mb-1.5">
+<span class="">DISCOVERY</span>
+<span class="">PHASE I</span>
+<span class="">PHASE II</span>
+<span class="font-bold text-vitality">PHASE III</span>
+<span class="">COMMERCIAL</span>
+</div>
+<!-- 5-segment bar -->
+<div class="grid grid-cols-5 gap-1.5">
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-vitality animate-pulse"></div>
+<div class="h-2 rounded-sm bg-surface-container-high"></div>
+</div>
+<div class="flex justify-between items-center text-[10px] font-mono text-on-surface-variant mt-1.5">
+<span class="">Cohort: n=1,420 Patients</span>
+<span class="text-primary font-bold">FDA Fast Track Granted</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="lg:col-span-2 flex lg:flex-col justify-end gap-2">
+<a class="px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-primary hover:text-white text-xs font-label font-bold text-on-surface transition-all text-center flex items-center justify-center gap-1" href="#dossier">
+<span class="">View Dossier</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+<a class="px-3.5 py-1.5 rounded-lg border border-outline-variant hover:bg-surface-container-low text-xs font-mono text-outline hover:text-on-surface transition-all text-center" href="#dossier">
+                  Protocol Spec
+                </a>
+</div>
+</div>
+</div>
+<!-- Row 2: Cardiology & Microvascular -->
+<div class="p-6 lg:p-7 hover:bg-surface-bright transition-colors">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+<!-- Identifiers -->
+<div class="lg:col-span-3">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-clinical-teal-light text-clinical-teal">MRG-CARDIO-4</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-clinical-teal/20 text-clinical-teal font-semibold">Phase IIb / Extension</span>
+</div>
+<h3 class="text-base font-headline font-bold text-on-surface">Cardiology &amp; Microvascular Repair</h3>
+<p class="text-xs text-outline mt-0.5">Target: Endothelial Nitric Synthase / Myocardial Remodeling</p>
+</div>
+<!-- Pathway & Mechanism -->
+<div class="lg:col-span-3 text-xs">
+<span class="text-outline font-mono block text-[11px]">PRIMARY MECHANISM</span>
+<p class="text-on-surface font-medium mt-0.5">Selective PCSK9/Angptl3 dual silencer driving coronary plaque regression and HFpEF stabilization.</p>
+</div>
+<!-- Phase Progress Bar -->
+<div class="lg:col-span-4">
+<div class="flex justify-between text-[11px] font-mono text-outline mb-1.5">
+<span class="">DISCOVERY</span>
+<span class="">PHASE I</span>
+<span class="font-bold text-clinical-teal">PHASE II</span>
+<span class="">PHASE III</span>
+<span class="">COMMERCIAL</span>
+</div>
+<div class="grid grid-cols-5 gap-1.5">
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-clinical-teal"></div>
+<div class="h-2 rounded-sm bg-surface-container-high"></div>
+<div class="h-2 rounded-sm bg-surface-container-high"></div>
+</div>
+<div class="flex justify-between items-center text-[10px] font-mono text-on-surface-variant mt-1.5">
+<span class="">Plaque Regression Index: 4.8</span>
+<span class="text-clinical-teal font-bold">EMA Prime Designation</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="lg:col-span-2 flex lg:flex-col justify-end gap-2">
+<a class="px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-primary hover:text-white text-xs font-label font-bold text-on-surface transition-all text-center flex items-center justify-center gap-1" href="#dossier">
+<span class="">View Dossier</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+<a class="px-3.5 py-1.5 rounded-lg border border-outline-variant hover:bg-surface-container-low text-xs font-mono text-outline hover:text-on-surface transition-all text-center" href="#dossier">
+                  Protocol Spec
+                </a>
+</div>
+</div>
+</div>
+<!-- Row 3: Metabolic & Mitochondrial Health -->
+<div class="p-6 lg:p-7 hover:bg-surface-bright transition-colors">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+<!-- Identifiers -->
+<div class="lg:col-span-3">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-vitality-container text-on-secondary-container">MRG-METAB-12</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-vitality-container text-on-secondary-container font-semibold">Phase III / Registration</span>
+</div>
+<h3 class="text-base font-headline font-bold text-on-surface">Metabolic &amp; Mitochondrial Health</h3>
+<p class="text-xs text-outline mt-0.5">Target: Dual GLP-1/GIP Agonist + Mitochondrial Co-Factor</p>
+</div>
+<!-- Pathway & Mechanism -->
+<div class="lg:col-span-3 text-xs">
+<span class="text-outline font-mono block text-[11px]">PRIMARY MECHANISM</span>
+<p class="text-on-surface font-medium mt-0.5">Next-gen incretin mimetic engineered for sustained beta-cell restoration and hepatic lipid clearance.</p>
+</div>
+<!-- Phase Progress Bar -->
+<div class="lg:col-span-4">
+<div class="flex justify-between text-[11px] font-mono text-outline mb-1.5">
+<span class="">DISCOVERY</span>
+<span class="">PHASE I</span>
+<span class="">PHASE II</span>
+<span class="font-bold text-vitality">PHASE III</span>
+<span class="">COMMERCIAL</span>
+</div>
+<div class="grid grid-cols-5 gap-1.5">
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-vitality animate-pulse"></div>
+<div class="h-2 rounded-sm bg-surface-container-high"></div>
+</div>
+<div class="flex justify-between items-center text-[10px] font-mono text-on-surface-variant mt-1.5">
+<span class="">HbA1c Delta: -2.4% (p &lt; 0.001)</span>
+<span class="text-vitality font-bold">Fast-Track Status</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="lg:col-span-2 flex lg:flex-col justify-end gap-2">
+<a class="px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-primary hover:text-white text-xs font-label font-bold text-on-surface transition-all text-center flex items-center justify-center gap-1" href="#dossier">
+<span class="">View Dossier</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+<a class="px-3.5 py-1.5 rounded-lg border border-outline-variant hover:bg-surface-container-low text-xs font-mono text-outline hover:text-on-surface transition-all text-center" href="#dossier">
+                  Protocol Spec
+                </a>
+</div>
+</div>
+</div>
+<!-- Row 4: Preventative Care & Cellular Longevity -->
+<div class="p-6 lg:p-7 hover:bg-surface-bright transition-colors">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+<!-- Identifiers -->
+<div class="lg:col-span-3">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-surface-container-highest text-on-surface">MRG-VITAL-GEN</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-primary-fixed text-primary font-semibold">Global Commercial</span>
+</div>
+<h3 class="text-base font-headline font-bold text-on-surface">General Wellness &amp; Cellular Resilience</h3>
+<p class="text-xs text-outline mt-0.5">Target: NAD+ Biosynthesis &amp; Cellular Autophagy Induction</p>
+</div>
+<!-- Pathway & Mechanism -->
+<div class="lg:col-span-3 text-xs">
+<span class="text-outline font-mono block text-[11px]">PRIMARY MECHANISM</span>
+<p class="text-on-surface font-medium mt-0.5">Pharmaceutical-grade bioactive micellar matrix ensuring 97.2% systemic bioavailability and zero GI degradation.</p>
+</div>
+<!-- Phase Progress Bar -->
+<div class="lg:col-span-4">
+<div class="flex justify-between text-[11px] font-mono text-outline mb-1.5">
+<span class="">DISCOVERY</span>
+<span class="">PHASE I</span>
+<span class="">PHASE II</span>
+<span class="">PHASE III</span>
+<span class="font-bold text-primary">COMMERCIAL</span>
+</div>
+<div class="grid grid-cols-5 gap-1.5">
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-primary"></div>
+<div class="h-2 rounded-sm bg-primary"></div>
+</div>
+<div class="flex justify-between items-center text-[10px] font-mono text-on-surface-variant mt-1.5">
+<span class="">Market: 38 International Territories</span>
+<span class="text-primary font-bold">OTC / Rx Harmonized</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="lg:col-span-2 flex lg:flex-col justify-end gap-2">
+<a class="px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-primary hover:text-white text-xs font-label font-bold text-on-surface transition-all text-center flex items-center justify-center gap-1" href="#dossier">
+<span class="">View Dossier</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+<a class="px-3.5 py-1.5 rounded-lg border border-outline-variant hover:bg-surface-container-low text-xs font-mono text-outline hover:text-on-surface transition-all text-center" href="#dossier">
+                  Protocol Spec
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 5. TELEMETRY DASHBOARD: GLOBAL REACH & REGULATORY STAMPS                  -->
+<!-- ========================================================================= -->
+<section class="py-20 bg-surface-bright relative" id="telemetry">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<!-- Telemetry Cockpit Container -->
+<div class="bg-white/90 text-on-surface rounded-3xl p-8 lg:p-12 shadow-xl border border-outline-variant/60 relative overflow-hidden backdrop-blur-md">
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(#2878bc_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
+<div class="relative z-10">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 pb-8 border-b border-outline-variant/50">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-clinical-teal/10 text-clinical-teal text-xs font-mono mb-2 border border-clinical-teal/20">
+<span class="w-2 h-2 rounded-full bg-secondary pulse-dot"></span>
+<span class="">REAL-TIME INFRASTRUCTURE METRICS</span>
+</div>
+<h2 class="text-3xl font-headline font-bold text-on-surface">Global Research Footprint &amp; Quality Telemetry</h2>
+</div>
+<!-- Audit Seals Cluster in crisp light mode -->
+<div class="flex flex-wrap items-center gap-3 text-xs font-mono">
+<span class="px-3 py-1.5 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface flex items-center gap-1.5 shadow-sm font-medium">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+                ISO 9001:2015
+              </span>
+<span class="px-3 py-1.5 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface flex items-center gap-1.5 shadow-sm font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary">health_and_safety</span>
+                WHO cGMP
+              </span>
+<span class="px-3 py-1.5 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface flex items-center gap-1.5 shadow-sm font-medium">
+<span class="material-symbols-outlined text-[16px] text-clinical-teal">security</span>
+                FDA / EMA HARMONIZED
+              </span>
+</div>
+</div>
+<!-- 4 Modular Stat Tiles (Light Biomedical Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/60 shadow-sm hover:border-primary/40 transition-colors">
+<span class="text-xs font-mono text-outline block mb-2 font-medium">ACTIVE MOLECULES</span>
+<div class="text-4xl font-headline font-extrabold text-primary mb-2">42+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">From pre-IND exploratory assays to commercial batch manufacturing.</p>
+<div class="mt-4 pt-3 border-t border-outline-variant/40 text-[11px] font-mono text-secondary flex items-center gap-1 font-semibold">
+<span class="">↑ 6 added in Q1 2025</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/60 shadow-sm hover:border-primary/40 transition-colors">
+<span class="text-xs font-mono text-outline block mb-2 font-medium">VALIDATED PATIENTS</span>
+<div class="text-4xl font-headline font-extrabold text-secondary mb-2">1,000,000+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Observational registry data verified across international clinical trial cohorts.</p>
+<div class="mt-4 pt-3 border-t border-outline-variant/40 text-[11px] font-mono text-outline flex items-center gap-1">
+<span class="">38 Partner nations active</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/60 shadow-sm hover:border-primary/40 transition-colors">
+<span class="text-xs font-mono text-outline block mb-2 font-medium">BIOLOGICS BATCH PURITY</span>
+<div class="text-4xl font-headline font-extrabold text-clinical-teal mb-2">99.8%</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Continuous mass spectrometry monitoring with sub-ppm impurity thresholds.</p>
+<div class="mt-4 pt-3 border-t border-outline-variant/40 text-[11px] font-mono text-clinical-teal flex items-center gap-1 font-semibold">
+<span class="">0.00% critical deviations</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/60 shadow-sm hover:border-primary/40 transition-colors">
+<span class="text-xs font-mono text-outline block mb-2 font-medium">COLD-CHAIN FIDELITY</span>
+<div class="text-4xl font-headline font-extrabold text-primary mb-2">99.99%</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">IoT cryogenic sensors tracking every container from synthesis to bedside.</p>
+<div class="mt-4 pt-3 border-t border-outline-variant/40 text-[11px] font-mono text-outline flex items-center gap-1">
+<span class="">Cryo &amp; Ultra-low 24/7 telemetry</span>
+</div>
+</div>
+</div>
+<!-- Research Hubs Geographic Index Light Accent Bar -->
+<div class="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/60">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<span class="text-xs font-mono text-outline block uppercase font-medium">Operational Tri-Hub Triad:</span>
+<p class="text-sm text-on-surface font-medium mt-0.5">
+                  Basel (Translational &amp; Regulatory) • Boston (Genomic Screening &amp; Discovery) • Singapore (Aseptic Biomanufacturing)
+                </p>
+</div>
+<div class="flex items-center gap-4 text-xs font-mono shrink-0">
+<span class="text-secondary font-semibold">● LATENCY: &lt; 24h TRANSIT</span>
+<span class="text-outline-variant">|</span>
+<span class="text-on-surface-variant font-medium">ENCRYPTION: AES-256</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 6. DUAL-PATHWAY CTA & SCIENTIFIC PARTNER HUB                              -->
+<!-- ========================================================================= -->
+<section class="py-20 bg-surface relative" id="co-dev">
+<div class="max-w-7xl mx-auto px-6 lg:px-8" id="partner-hub">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-mono font-semibold uppercase mb-2">
+          STRATEGIC COLLABORATION MODES
+        </div>
+<h2 class="text-3xl sm:text-4xl font-headline font-extrabold text-on-surface">
+          Accelerate Your Discovery With Mirage Pharma
+        </h2>
+<p class="text-sm text-on-surface-variant mt-2">
+          Select your scientific pathway to engage our translational laboratories, regulatory team, or commercial manufacturing facilities.
+        </p>
+</div>
+<!-- Dual Cards Pathway -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Pathway A: Academic & Clinical Trials Co-Dev -->
+<div class="bg-white rounded-3xl p-8 lg:p-10 border border-outline-variant/80 shadow-lg flex flex-col justify-between hover:border-primary transition-all">
+<div>
+<div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[32px]">science</span>
+</div>
+<span class="text-xs font-mono font-bold text-primary block mb-1">PATHWAY A // CO-DEVELOPMENT</span>
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-3">Academic &amp; Clinical Trial Collaboration</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6">
+              For principal investigators, academic medical centers, and biotechnology consortia seeking co-sponsorship, bioanalytical assays, or clinical trial site enrollment.
+            </p>
+<ul class="space-y-2.5 text-xs text-on-surface-variant mb-8 font-mono">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-vitality">check_circle</span>
+                Grant co-applications &amp; translational funding
+              </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-vitality">check_circle</span>
+                Access to proprietary screening libraries
+              </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-vitality">check_circle</span>
+                Joint peer-reviewed scientific publication rights
+              </li>
+</ul>
+</div>
+<a class="w-full py-3.5 px-6 rounded-xl bg-primary text-white text-xs font-label font-bold tracking-wider uppercase text-center hover:bg-primary-container shadow-md transition-all active:scale-95 flex items-center justify-center gap-2" href="mailto:research-partners@miragepharma.com">
+<span class="">Initiate Academic Co-Dev Protocol</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Pathway B: Commercial Licensing & Distribution -->
+<div class="bg-white rounded-3xl p-8 lg:p-10 border border-outline-variant/80 shadow-lg flex flex-col justify-between hover:border-clinical-teal transition-all">
+<div>
+<div class="w-14 h-14 rounded-2xl bg-clinical-teal/10 text-clinical-teal flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[32px]">inventory_2</span>
+</div>
+<span class="text-xs font-mono font-bold text-clinical-teal block mb-1">PATHWAY B // LICENSING &amp; SUPPLY</span>
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-3">Commercial Out-Licensing &amp; CDMO Supply</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6">
+              For pharmaceutical distributors, health authorities, and commercial partners seeking territorial rights, finished product supply, or bulk cGMP active pharmaceutical ingredients (API).
+            </p>
+<ul class="space-y-2.5 text-xs text-on-surface-variant mb-8 font-mono">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-clinical-teal">check_circle</span>
+                Multi-territory marketing authorizations
+              </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-clinical-teal">check_circle</span>
+                Guaranteed cold-chain delivery SLAs
+              </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-clinical-teal">check_circle</span>
+                FDA &amp; EMA validated cGMP commercial lots
+              </li>
+</ul>
+</div>
+<a class="w-full py-3.5 px-6 rounded-xl bg-clinical-teal text-white text-xs font-label font-bold tracking-wider uppercase text-center hover:bg-primary shadow-md transition-all active:scale-95 flex items-center justify-center gap-2" href="mailto:licensing@miragepharma.com">
+<span class="">Request Commercial Dossier</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ========================================================================= -->
+<!-- 7. CORPORATE & REGULATORY FOOTER                                          -->
+<!-- ========================================================================= -->
+<footer class="bg-white border-t border-outline-variant/60 font-sans text-on-surface">
+<div class="max-w-7xl mx-auto px-6 lg:px-8 py-14">
+<!-- Top Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-outline-variant/40">
+<!-- Logo & Narrative (2 cols) -->
+<div class="lg:col-span-2 space-y-4">
+<a class="inline-block" href="#hero">
+<img alt="Mirage Pharma Logo" class="h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WJZJUdIis2WOUvfhmLoX2MMXrswKA2za4bAvemQ3FproLNe4q7S1enXyEN07KHfsxohry9_AILGISNYnTBqvKHHxM3zszcExZcLps6ttBqSGKmHkG_zPDNgwm1V8wV7mYd6PhrljmPuvbGTg64qp1GT-hVQCwC2kthF2eg6L6OwzERgNGNj9lV_VS2hhpAhCtbJCb8WpAXPGMgdCdXEEuZGl0R79zL_hD3fCz5DDv679eG99cfAqJvjYqD">
+</a>
+<p class="text-xs text-on-surface-variant leading-relaxed max-w-sm">
+          Science Has A Purpose. Life. Advancing clinical medicine through precision molecular analytics, verified GxP compliance, and compassionate access worldwide.
+        </p>
+<div class="text-[11px] font-mono text-outline space-y-1">
+<div class="">HQ: Aeschenvorstadt 48, 4051 Basel, Switzerland</div>
+<div class="">Boston: 400 Technology Square, Cambridge, MA</div>
+<div class="">Singapore: 1 Fusionopolis Way, Connexis</div>
+</div>
+</div>
+<!-- Col 1: Scientific Architecture -->
+<div class="space-y-3">
+<h4 class="text-xs font-headline font-bold uppercase tracking-wider text-on-surface">Scientific Matrix</h4>
+<ul class="space-y-2 text-xs text-on-surface-variant">
+<li class=""><a class="hover:text-primary transition-colors" href="#pipeline">Precision Oncology (MRG-701)</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#pipeline">Cardiovascular Endothelium</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#pipeline">Metabolic Incretin Sync</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#pipeline">Preventative Longevity Shield</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#pipeline">Clinical Trials Registry</a></li>
+</ul>
+</div>
+<!-- Col 2: Regulatory & Compliance -->
+<div class="space-y-3">
+<h4 class="text-xs font-headline font-bold uppercase tracking-wider text-on-surface">Compliance &amp; GxP</h4>
+<ul class="space-y-2 text-xs text-on-surface-variant">
+<li class=""><a class="hover:text-primary transition-colors font-medium text-primary" href="#">GxP Audit Certificates</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">FDA 21 CFR Part 11 Statements</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Pharmacovigilance &amp; Safety</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Ethics Review Committee</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Investigator Portal Sign-In</a></li>
+</ul>
+</div>
+<!-- Col 3: Governance & Legal -->
+<div class="space-y-3">
+<h4 class="text-xs font-headline font-bold uppercase tracking-wider text-on-surface">Governance &amp; Legal</h4>
+<ul class="space-y-2 text-xs text-on-surface-variant">
+<li class=""><a class="hover:text-primary transition-colors" href="#">Privacy &amp; Health Data Policy</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Clinical Research Disclosures</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Biometric Charter</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">ESG &amp; Life Stewardship</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="mailto:legal@miragepharma.com">Compliance Contact</a></li>
+</ul>
+</div>
+</div>
+<!-- Regulatory Stamp Ribbon -->
+<div class="py-4 border-b border-outline-variant/40 flex flex-wrap items-center justify-between gap-4 text-[11px] font-mono text-outline">
+<div class="flex flex-wrap items-center gap-6">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-vitality">verified</span> ISO 9001:2015 REGISTERED</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-primary">biotech</span> EMA &amp; FDA GxP HARMONIZED</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-clinical-teal">verified_user</span> WHO cGMP CERTIFIED</span>
+</div>
+<div>
+<span class="">DATA ENCRYPTION: AES-256 GxP VALIDATED</span>
+</div>
+</div>
+<!-- Bottom Legal Notice -->
+<div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-outline">
+<p class="">© 2025 Mirage Pharma Inc. All rights reserved. Global patents and trial protocols registered under WIPO &amp; PCT frameworks.</p>
+<p class="">"Healthy Life" and the upward human vitality emblem are registered marks of Mirage Pharma International.</p>
+</div>
+</div>
+</footer>
+
+
+</body></html>
